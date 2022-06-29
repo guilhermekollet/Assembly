@@ -1,7 +1,4 @@
 #include <iostream>
-#include  <string>
-
-using namespace std;
 
 int main (){
     int vetA [] = {810 ,100, 560, 380, 600, 87};
@@ -22,37 +19,6 @@ int main (){
     int mediaB = 0;
     int mediaC = 0;
     
-    cout << "Vetor A: ";
-
-    for (int i=0; i < N; i++)
-    {
-
-        cout << vetA[i] << " ";
-
-    }
-
-    cout << endl << "Vetor B: ";
-
-    for (int i=0; i < N; i++)
-    {
-
-        cout << vetB[i] << " ";
-
-    }
-
-    cout << endl << "Vetor C: ";
-
-    for (int i=0; i < N; i++)
-    {
-
-        cout << vetC[i] << " ";
-
-    }
-
-    cout << endl;
-    cout << "N: " << N << endl;
-    cout << endl;
-
     while(I < N)
     {
         sumA += vetA[I];
@@ -66,12 +32,6 @@ int main (){
     mediaB = sumB / N;
     mediaC = sumC / N;
 
-    cout << "Somatorio A: " << sumA << " media A: " << mediaA << endl;
-    cout << "Somatorio B: " << sumB << " media B: " << mediaB << endl;
-    cout << "Somatorio C: " << sumC << " media C: " << mediaC << endl;
-
-    cout << endl;
-
     if(mediaA < MIN)
     MIN = mediaA;
 
@@ -80,10 +40,6 @@ int main (){
 
     if(mediaC < MIN)
     MIN = mediaC;
-
-    cout << "Minimo: " << MIN << endl;
-
-    cout << endl;
 
     I = 0;
 
@@ -111,18 +67,6 @@ int main (){
 
     }
 
-    cout << "vetor D: ";
-
-    for (int i=0; i < K; i++)
-    {
-
-        cout << vetD[i] << " ";
-
-    }
-
-    cout << endl;
-
-    cout << "K: " << K << endl;
-    return 0 ;
+return 0 ;
 }
 
