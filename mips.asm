@@ -6,6 +6,8 @@
 	n: .word 6
 	k: .word 0
 	
+	MIN: .word 1000
+	
 	sumA: .word 0
 	sumB: .word 0
 	sumC: .word 0
@@ -48,17 +50,17 @@ somatorio:
 	
 saiDoLoop:
 
-###################################################
-###   Salva os somatórios dos vetores A, B e C  ###
-###################################################
+############################################################
+###       Salva os somatórios dos vetores A, B e C       ###
+############################################################
 
 	sw $t4, sumA
 	sw $t5, sumB
 	sw $t6, sumC
 	
-###################################################
-###        Calcula a média dos somatórios       ###
-###################################################
+##################################################
+###       Calcula a média dos somatórios       ###
+##################################################
 	
 	la $s1, sumA 
 	lw $s1, 0($s1)      	# lê o dividendo
@@ -84,14 +86,114 @@ saiDoLoop:
 	
 	sw $v1, sumC		# salva a média do vetor B
 	
-
-	j Exit
+#########################################################################
+###        3º ESPECIFICAÇÃO: VM -> MIN E VALORES MENORES QUE VM       ###
+#########################################################################
 	
-Exit: j Exit
+	lw $t3, MIN
 
-###############################################################################################
-###  Divisão serial  $s1/ $s0 -->   $v0--> resto    $v1 --> divisão
-###############################################################################################
+achaMin:
+
+	lw $t4, sumA
+	blt $t4, $t3, incrementa
+	
+	lw $t4, sumB
+	blt $t4, $t3, incrementa
+
+	lw $t4, sumC
+	blt $t4, $t3, incrementa
+	
+	sw $t3, MIN
+	
+	move $t0, $zero 	# posição de percorrimento no vetor (int pos = 0)
+	li $t1, 0		# inteiro para incremento (int i = 0)
+	lw $t2, n		# quantidade de itens nos vetores (int n = 6)
+	lw $t9, k
+		
+	lw $s0, A		# vetor A
+	lw $s1, B		# vetor B
+	lw $s2, C		# vetor C
+	lw $s3, D		# vetor D
+	
+	lw $t3, MIN
+	
+	j analisaA
+
+incrementa:
+	add $t3, $zero, $t4
+	j achaMin
+		
+analisaA:	
+	beq $t1, $t2, resetaA
+	
+	lw $t7, A($t0)			# armazena conteúdo do vetor A em $t7
+	blt $t7, $t3, adicionaDoA	# se o conteúdo do vetor A for menor que o $t3 (MIN)
+	
+	addi $t0, $t0, 4		# incrementa a posição do vetor (pos++)
+	addi $t1, $t1, 1
+	j analisaA
+	
+adicionaDoA:
+	sw $t7, D($t9)
+	addi $t9, $t9, 4
+	addi $t0, $t0, 4
+	addi $t1, $t1, 1
+	j analisaA
+
+resetaA:
+	move $t0, $zero 	# posição de percorrimento no vetor (int pos = 0)
+	li $t1, 0		# inteiro para incremento (int i = 0)
+	lw $t2, n		# quantidade de itens nos vetores (int n = 6)
+	j analisaB
+	
+analisaB:	
+	beq $t1, $t2, resetaB
+	
+	lw $t7, B($t0)			# armazena conteúdo do vetor A em $t7
+	blt $t7, $t3, adicionaDoB	# se o conteúdo do vetor A for menor que o $t3 (MIN)
+	
+	addi $t0, $t0, 4		# incrementa a posição do vetor (pos++)
+	addi $t1, $t1, 1
+	j analisaB
+	
+adicionaDoB:
+	sw $t7, D($t9)
+	addi $t9, $t9, 4
+	addi $t0, $t0, 4
+	addi $t1, $t1, 1
+	j analisaB
+	
+resetaB:
+	move $t0, $zero 	# posição de percorrimento no vetor (int pos = 0)
+	li $t1, 0		# inteiro para incremento (int i = 0)
+	lw $t2, n		# quantidade de itens nos vetores (int n = 6)
+	j analisaC
+
+analisaC:	
+	beq $t1, $t2, Exit
+	
+	lw $t7, C($t0)			# armazena conteúdo do vetor A em $t7
+	blt $t7, $t3, adicionaDoC	# se o conteúdo do vetor A for menor que o $t3 (MIN)
+	
+	addi $t0, $t0, 4		# incrementa a posição do vetor (pos++)
+	addi $t1, $t1, 1
+	j analisaC
+	
+adicionaDoC:
+	sw $t7, D($t9)
+	addi $t9, $t9, 4
+	addi $t0, $t0, 4
+	addi $t1, $t1, 1
+	j analisaC
+
+Exit: 
+
+j Exit
+
+####################################################################################
+###        Divisão serial  $s1/ $s0 -->   $v0--> resto    $v1 --> divisão        ###
+#################################################################################### 
+
 divider:  lui   $t0, 0x8000       # mascara para isolar bit mais significativo
           li    $t1, 32           # contador de iterações
 
