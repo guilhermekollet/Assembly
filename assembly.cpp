@@ -1,72 +1,76 @@
 #include <iostream>
+#include  <string>
+
+using namespace std;
 
 int main (){
-    int vetA [] = {810 ,100, 560, 380, 600, 87};
-    int vetB [] = {800, 555, 817, 124, 890, 456};
-    int vetC [] = {345, 200, 700, 180, 600, 490};
-    int vetD[10];
-    
-    int N = 6;
-    int K = 0;
-    int I = 0;
+    int A [] = {810 ,100, 560, 380, 600, 87};
+    int B [] = {800, 555, 817, 124, 890, 456};
+    int C [] = {345, 200, 700, 180, 600, 490};
+
+    int n = 6;
+    int k = 0;
+
     int MIN = 1000;
 
     int sumA = 0;
     int sumB = 0;
     int sumC = 0;
 
-    int mediaA = 0;
-    int mediaB = 0;
-    int mediaC = 0;
+    int D[50];
     
-    while(I < N)
+
+    for(int i = 0; i < n; i++)
     {
-        sumA += vetA[I];
-        sumB += vetB[I];
-        sumC += vetC[I];
 
-        I++;
-    }
-
-    mediaA = sumA / N;
-    mediaB = sumB / N;
-    mediaC = sumC / N;
-
-    if(mediaA < MIN)
-    MIN = mediaA;
-
-    if(mediaB < MIN)
-    MIN = mediaB;
-
-    if(mediaC < MIN)
-    MIN = mediaC;
-
-    I = 0;
-
-    while(I < N)
-    {
-        if(vetA[I] < MIN) 
-        {
-            vetD[K] = vetA[I];
-            K++;
-        }
-
-        if(vetB[I] < MIN) 
-        {
-            vetD[K] = vetB[I];
-            K++;
-        }
-
-        if(vetC[I] < MIN) 
-        {
-            vetD[K] = vetC[I];
-            K++;
-        }
-
-        I++;
+        sumA += A[i];
+        sumB += B[i];
+        sumC += C[i];
 
     }
 
-return 0 ;
+    sumA = sumA / n;
+    sumB = sumB / n;
+    sumC = sumC / n;
+
+    if(sumA < MIN)
+    MIN = sumA;
+
+    if(sumB < MIN)
+    MIN = sumB;
+
+    if(sumC < MIN)
+    MIN = sumC;
+
+    for(int i = 0; i < n; i++)
+    {
+        if(A[i] < MIN) 
+        {
+            D[k] = A[i];
+            k++;
+        }
+    }
+
+    for(int i = 0; i < n; i++)
+    {
+
+        if(B[i] < MIN) 
+        {
+            D[k] = B[i];
+            k++;
+        }
+    }
+
+    for(int i = 0; i < n; i++)
+    {
+
+        if(C[i] < MIN) 
+        {
+            D[k] = C[i];
+            k++;
+        }
+    }
+
+    return 0 ;
 }
 

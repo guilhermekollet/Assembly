@@ -4,125 +4,127 @@
 using namespace std;
 
 int main (){
-    int vetA [] = {810 ,100, 560, 380, 600, 87};
-    int vetB [] = {800, 555, 817, 124, 890, 456};
-    int vetC [] = {345, 200, 700, 180, 600, 490};
-    int vetD[10];
-    
-    int N = 6;
-    int K = 0;
-    int I = 0;
+    int A [] = {810 ,100, 560, 380, 600, 87};
+    int B [] = {800, 555, 817, 124, 890, 456};
+    int C [] = {345, 200, 700, 180, 600, 490};
+
+    int n = 6;
+    int k = 0;
+
     int MIN = 1000;
 
     int sumA = 0;
     int sumB = 0;
     int sumC = 0;
 
-    int mediaA = 0;
-    int mediaB = 0;
-    int mediaC = 0;
+    int D[50];
     
     cout << "Vetor A: ";
 
-    for (int i=0; i < N; i++)
+    for (int i = 0; i < n; i++)
     {
 
-        cout << vetA[i] << " ";
+        cout << A[i] << " ";
 
     }
 
     cout << endl << "Vetor B: ";
 
-    for (int i=0; i < N; i++)
+    for (int i = 0; i < n; i++)
     {
 
-        cout << vetB[i] << " ";
+        cout << B[i] << " ";
 
     }
 
     cout << endl << "Vetor C: ";
 
-    for (int i=0; i < N; i++)
+    for (int i = 0; i < n; i++)
     {
 
-        cout << vetC[i] << " ";
+        cout << C[i] << " ";
 
     }
 
     cout << endl;
-    cout << "N: " << N << endl;
+    cout << "n: " << n << endl;
     cout << endl;
 
-    while(I < N)
-    {
-        sumA += vetA[I];
-        sumB += vetB[I];
-        sumC += vetC[I];
+    
 
-        I++;
+    for(int i = 0; i < n; i++)
+    {
+
+        sumA += A[i];
+        sumB += B[i];
+        sumC += C[i];
+
     }
 
-    mediaA = sumA / N;
-    mediaB = sumB / N;
-    mediaC = sumC / N;
+    sumA = sumA / n;
+    sumB = sumB / n;
+    sumC = sumC / n;
 
-    cout << "Somatorio A: " << sumA << " media A: " << mediaA << endl;
-    cout << "Somatorio B: " << sumB << " media B: " << mediaB << endl;
-    cout << "Somatorio C: " << sumC << " media C: " << mediaC << endl;
+    cout << "media A: " << sumA << endl;
+    cout << "media B: " << sumB << endl;
+    cout << "media C: " << sumC << endl;
 
     cout << endl;
 
-    if(mediaA < MIN)
-    MIN = mediaA;
+    if(sumA < MIN)
+    MIN = sumA;
 
-    if(mediaB < MIN)
-    MIN = mediaB;
+    if(sumB < MIN)
+    MIN = sumB;
 
-    if(mediaC < MIN)
-    MIN = mediaC;
+    if(sumC < MIN)
+    MIN = sumC;
 
     cout << "Minimo: " << MIN << endl;
 
     cout << endl;
 
-    I = 0;
-
-    while(I < N)
+    for(int i = 0; i < n; i++)
     {
-        if(vetA[I] < MIN) 
+        if(A[i] < MIN) 
         {
-            vetD[K] = vetA[I];
-            K++;
+            D[k] = A[i];
+            k++;
         }
-
-        if(vetB[I] < MIN) 
-        {
-            vetD[K] = vetB[I];
-            K++;
-        }
-
-        if(vetC[I] < MIN) 
-        {
-            vetD[K] = vetC[I];
-            K++;
-        }
-
-        I++;
-
     }
 
-    cout << "vetor D: ";
-
-    for (int i=0; i < K; i++)
+    for(int i = 0; i < n; i++)
     {
 
-        cout << vetD[i] << " ";
+        if(B[i] < MIN) 
+        {
+            D[k] = B[i];
+            k++;
+        }
+    }
+
+    for(int i = 0; i < n; i++)
+    {
+
+        if(C[i] < MIN) 
+        {
+            D[k] = C[i];
+            k++;
+        }
+    }
+
+    cout << "Vetor D: ";
+
+    for (int i=0; i < k; i++)
+    {
+
+        cout << D[i] << " ";
 
     }
 
     cout << endl;
 
-    cout << "K: " << K << endl;
+    cout << "k: " << k << endl;
     return 0 ;
 }
 
