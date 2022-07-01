@@ -1,14 +1,13 @@
 #include <iostream>
-#include  <string>
 
-using namespace std;
+int main ()
+{
+    
+    int A [] = {345 ,100, 560, 943};
+    int B [] = {800, 255, 817, 765};
+    int C [] = {740, 200, 700, 180};
 
-int main (){
-    int A [] = {810 ,100, 560, 380, 600, 87};
-    int B [] = {800, 555, 817, 124, 890, 456};
-    int C [] = {345, 200, 700, 180, 600, 490};
-
-    int n = 6;
+    int n = 4;
     int k = 0;
 
     int MIN = 1000;
@@ -47,30 +46,32 @@ int main (){
         if(A[i] < MIN) 
         {
             D[k] = A[i];
+            std::cout << D[k] << " ";
             k++;
         }
     }
 
     for(int i = 0; i < n; i++)
     {
-
         if(B[i] < MIN) 
         {
             D[k] = B[i];
+            std::cout << D[k] << " ";
             k++;
         }
     }
 
     for(int i = 0; i < n; i++)
     {
-
         if(C[i] < MIN) 
         {
             D[k] = C[i];
+            std::cout << D[k] << " ";
             k++;
         }
     }
+    std::cout << "- k: " << k;
+    std::cin >> n; //apenas para não encerrar a execução
 
-    return 0 ;
+    return 0;
 }
-

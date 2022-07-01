@@ -1,10 +1,10 @@
 # mips.asm //by Guilherme Kollet - 01/07/2022
 .data
-	A: .word 810 100 560 380 600 87
-	B: .word 800 555 817 124 890 456
-	C: .word 345 200 700 180 600 490
+	A: .word 345 100 560 943
+	B: .word 800 255 817 765
+	C: .word 740 200 700 180
 
-	n: .word 6
+	n: .word 4
 	k: .word 0
 	
 	MIN: .word 1000
